@@ -42,10 +42,11 @@ VALIDATE $? "starting  mysql server"
 # below code will be useful for idempotent nature
 
  mysql -h db.ilam-78s.online -uroot -pExpenseApp@1 -e 'show databases;' &>>$LOGFILE
- if [$? - ne 0]
- then
+if [$? - ne 0]
+then
      mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
      VALIDATE $? "MYSQL root password set up"
- else
+else
      echo -e "root password is already setup...$Y SKIPPING $N"
+fi
 
